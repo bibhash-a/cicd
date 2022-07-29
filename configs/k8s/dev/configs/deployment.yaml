@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cicd-d
+  labels:
+    app: nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cicd
+  template:
+    metadata:
+      labels:
+        app: cicd
+      annotations:
+        myEpicMetadata: "Awesome!"
+    spec:
+      containers:
+      - name: nginx
+        image: bibhasha/cicd
+        ports:
+        - containerPort: 80
